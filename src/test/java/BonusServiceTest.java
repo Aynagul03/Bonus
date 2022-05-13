@@ -55,6 +55,23 @@ public class BonusServiceTest {
 
         Assertions.assertEquals(expected, actual);
     }
-}
 
+    @org.junit.jupiter.api.Test
+    public void shouldCalculateBonusIfHugeAmountAndRegistered() {
+        BonusService service = new BonusService();
+        long actual = service.calculate(10_000_000, true);
+        long expected = 500;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void shouldCalculateBonusIfSmallAmountAndNotRegistered() {
+        BonusService service = new BonusService();
+        long actual = service.calculate(1000, false);
+        long expected = 0;
+
+        Assertions.assertEquals(expected, actual);
+    }
+}
 
